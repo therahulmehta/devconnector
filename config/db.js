@@ -5,7 +5,10 @@ const db = config.get("mongoURI");
 //returns promise instead of then and catch, async code.
 const connectDB = async () => {
   try {
-    await mongoose.connect(db, { useNewUrlParser: true });
+    await mongoose.connect(db, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
     console.log("MongoDB connected");
   } catch (err) {
