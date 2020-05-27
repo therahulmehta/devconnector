@@ -42,7 +42,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
     const {
       company,
       location,
@@ -81,28 +80,52 @@ router.post(
     if (instagram) profileFields.social.instagram = instagram;
 
     try {
-      let profile = Profile.findOne({ user: req.user.id });
-
-      if (profile) {
-        //update
-        profile = await Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: profileFields },
-          { new: true, useFindAndModify: false }
-        );
-
-        return res.json(profile);
-
-        //create
-        profile = new Profile(profileFields);
-        await profile.save();
-        res.json(profile);
-      }
+      // Using upsert option (creates new doc if no match is found):
+      let profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true, upsert: true }
+      );
+      res.json(profile);
     } catch (err) {
-      console.error(err);
+      console.error(err.message);
       res.status(500).send("Server Error");
     }
   }
 );
+
+// @route    GET api/profile
+// @desc     Get all profiles
+// @access   Public
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    GET api/profile
+// @desc     Get all profile by User ID
+// @access   Public
+router.get("/user/:user_id", async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate("user", ["name", "avatar"]);
+    if (!profile)
+      return res
+        .status(400)
+        .json({ msg: "There is no profile for this user!" });
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      res.status(500).send("Server Error");
+    }
+  }
+});
 
 module.exports = router;
