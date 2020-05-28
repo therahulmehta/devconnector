@@ -1,11 +1,8 @@
 {
   "folders": [
-	{
-		"path": "."
-	},
-	{
-		"path": "../devconnector_html_theme"
-	}
-],
+    {
+      "path": "."
+    }
+  ],
   "settings": {}
 }
