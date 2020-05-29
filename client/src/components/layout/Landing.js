@@ -1,7 +1,6 @@
 import React from "react";
-import { Navbar } from "./Navbar";
 
-export const Landing = () => {
+const Landing = () => {
   return (
     <section className="landing">
       <div className="dark-overlay">
