@@ -15,7 +15,6 @@ const AddExperience = ({ addExperience, history }) => {
     description: "",
   });
 
-  const [toggleDisabled] = useState(false);
   const { company, title, location, from, to, current, description } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
