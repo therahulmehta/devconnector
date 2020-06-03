@@ -30,7 +30,7 @@ const AddEducation = ({ addEducation, history }) => {
 
   return (
     <Fragment>
-      <h1 class="large text-primary">Add An Experience</h1>
+      <h1 class="large text-primary">Add Educaiton</h1>
       <p class="lead">
         <i class="fas fa-code-branch"></i> Add any school or bootcamp you have
         attended
@@ -93,7 +93,7 @@ const AddEducation = ({ addEducation, history }) => {
                 toggleDisabled(!toggleDisabled);
               }}
             />{" "}
-            Current Job
+            Current School
           </p>
         </div>
         <div class="form-group">
