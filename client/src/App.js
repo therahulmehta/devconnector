@@ -10,6 +10,8 @@ import NotFound from "./components/layout/notFound";
 import setAuthToken from "./utils/setAuthToken";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import CreateProfile from "./components/profile-form/CreateProfile";
+import EditProfile from "./components/profile-form/EditProfile";
+
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -42,6 +44,11 @@ const App = () => {
                 exact
                 path="/create-profile"
                 component={CreateProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
               />
               <Route component={NotFound} />
             </Switch>
