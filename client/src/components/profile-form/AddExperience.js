@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
+// import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addExperience } from "../../actions/profile";
 
@@ -15,7 +15,7 @@ const AddExperience = ({ addExperience, history }) => {
     description: "",
   });
 
-  const [toDateDisabled, toggleDisabled] = useState(false);
+  const [toggleDisabled] = useState(false);
   const { company, title, location, from, to, current, description } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -82,7 +82,6 @@ const AddExperience = ({ addExperience, history }) => {
               value={current}
               onChange={(e) => {
                 setFormData({ ...formData, current: !current });
-                toggleDisabled(!toggleDisabled);
               }}
             />{" "}
             Current Job
