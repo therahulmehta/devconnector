@@ -90,7 +90,6 @@ const AddEducation = ({ addEducation, history }) => {
               value={current}
               onChange={(e) => {
                 setFormData({ ...formData, current: !current });
-                toggleDisabled(!toggleDisabled);
               }}
             />{" "}
             Current School

@@ -45,11 +45,11 @@ export const getProfiles = () => async (dispatch) => {
   }
 };
 
-// Get profile by id
+// Get profile by ID
 export const getProfileById = (userId) => async (dispatch) => {
   try {
-    // array of all profiles
-    const res = await axios.get(`api/profile/user${userId}`);
+    const res = await axios.get(`/profile/user/${userId}`);
+
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -57,7 +57,7 @@ export const getProfileById = (userId) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, stats: err.response.stats },
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

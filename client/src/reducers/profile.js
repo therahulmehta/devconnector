@@ -25,6 +25,7 @@ export default function (state = initalState, action) {
         profile: payload,
         loading: false,
       };
+
     case GET_PROFILES:
       return {
         ...state,
@@ -39,19 +40,21 @@ export default function (state = initalState, action) {
         loading: false,
         profile: null,
       };
+
     case CLEAR_PROFILE:
       return {
         ...state,
         profile: null,
         repos: [],
-        loading: false,
       };
+
     case GET_REPOS:
       return {
         ...state,
         repos: payload,
         loading: false,
       };
+
     default:
       return state;
   }
