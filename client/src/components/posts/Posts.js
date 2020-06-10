@@ -1,22 +1,22 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getPosts, getPost } from "../../actions/post";
-import Spinner from "../layout/Spinner";
 import PostItem from "./PostItem";
-const Posts = ({ getPosts, post: { posts, loading } }) => {
+import PostForm from "./PostForm";
+import { getPosts } from "../../actions/post";
+
+const Posts = ({ getPosts, post: { posts } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-  return loading ? (
-    <Spinner />
-  ) : (
+
+  return (
     <Fragment>
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
-        <i className="fas fa-user"></i> Welcome to the community
+        <i className="fas fa-user" /> Welcome to the community
       </p>
-      {/* PostForm*/}
+      <PostForm />
       <div className="posts">
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />
@@ -31,8 +31,8 @@ Posts.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-const mapStateTopProps = (state) => ({
+const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateTopProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);
