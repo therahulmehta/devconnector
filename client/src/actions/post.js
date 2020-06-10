@@ -30,7 +30,7 @@ export const getPosts = () => async (dispatch) => {
 // Add like
 export const addLike = (id) => async (dispatch) => {
   try {
-    const res = await axios.put(`api/posts/like/${id}`);
+    const res = await axios.put(`/api/posts/like/${id}`);
 
     dispatch({
       type: UPDATE_LIKES,
@@ -47,7 +47,7 @@ export const addLike = (id) => async (dispatch) => {
 // Remove like
 export const removeLike = (id) => async (dispatch) => {
   try {
-    const res = await axios.put(`api/posts/unlike/${id}`);
+    const res = await axios.put(`/api/posts/unlike/${id}`);
 
     dispatch({
       type: UPDATE_LIKES,
@@ -119,7 +119,7 @@ export const getPost = (id) => async (dispatch) => {
 // Add comment
 export const addComment = (postId, formData) => async (dispatch) => {
   try {
-    const res = await axios.post(`/posts/comment/${postId}`, formData);
+    const res = await axios.post(`/api/posts/comment/${postId}`, formData);
 
     dispatch({
       type: ADD_COMMENT,
@@ -138,7 +138,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 // Delete comment
 export const deleteComment = (postId, commentId) => async (dispatch) => {
   try {
-    await axios.delete(`/posts/comment/${postId}/${commentId}`);
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 
     dispatch({
       type: REMOVE_COMMENT,
